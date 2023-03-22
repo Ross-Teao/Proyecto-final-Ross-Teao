@@ -21,41 +21,36 @@
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Inicio</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" {% if request.user.is_authenticated %}{% endif%} href="{% url 'exit' %}">Salir</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" {% if request.user.is_authenticated %}{% endif%} ><h4> Usario conectado: {{ user.username | upper }} </h4></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-            </li>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'info' %}">Informacion</a>
+                </li>
+
+                {% if request.user.is_authenticated %}
+            
+                <li><a class="nav-link active" aria-current="page" style='text-align:right' href="{% url 'exit' %}">Salir</a></li>
+            
+                {% else %}
+            
+                    <li><a class="nav-link active" aria-current="page" href="{% url 'login' %}">Ingresar</a></li>
+            
+                {% endif%}
+
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Registrar</a>
+                </li>
+                
             </ul>
         </div>
         </div>
     </nav>
-
-        <h1 style="color:rebeccapurple"> Menu </h1>
+    {% comment %} <div style='text-align:right' " entre los símbolos <></div> {% endcomment %}
+        <a class="float-end" class="nav-link active" aria-current="page" >Usario conectado: {{ user.username | upper}} </a>
+        <h1 style='color:rebeccapurple'> Menu </h1>
 
 <hr/>
 <div id="menu">
-
-<ul>
-    {% comment %} <li><a href="{% url '' %}">data 2</a></li>
-    <li><a href="{% url '' %}">data 3</a></li>
-    <li><a href="{% url '' %}">data 4</a></li> {% endcomment %}
-</ul>
-</div>
-    {% if request.user.is_authenticated %}
-    <h4> Usario conectado: {{ user.username | upper }} </h4>
-    <br>
-    {% else %}
-        <li><a href="{% url 'login' %}">Ingresar</a></li>
-    {% endif%}
-
-    {% block contenido_nuevo%}{% endblock %}
-    </div>
-
+{% block contenido_nuevo%}{% endblock %}
 </body>
 </html>
 

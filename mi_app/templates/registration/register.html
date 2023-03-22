@@ -3,7 +3,7 @@
 {% block contenido_nuevo%}
 {% load crispy_forms_tags%}
 
-    <title>{% block title%} Login {% endblock %}</title>
+    <title>{% block title%} Registro de usuaio {% endblock %}</title>
 
 
     <form action="" method="POST">
@@ -11,14 +11,14 @@
         
         <div class="card mx-auto" style="width: 30rem;">
             <div class="card-body">
-                <h5 class="card-title">Ingrese sus credenciales</h5>
+                <h5 class="card-title">Complete todos los campos</h5>
                 
                     {{form | crispy}}
 
                 <a href="{% url 'inicio' %}" class="card-link">inicio</a>
-                <a href="{% url 'register' %}" class="card-link">registrase</a>
+                <a href="#" class="card-link">iniciar sesion</a>
 
-                <button class="btn btn-sm btn-primary float-end" type="submit">Inciar sesion</button>
+                <button class="btn btn-sm btn-primary float-end" type="submit">Registrarse</button>
             </div>
         </div>
 
