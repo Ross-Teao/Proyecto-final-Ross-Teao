@@ -1,0 +1,17 @@
+{% extends "mi_app/base.html" %}
+{% load static %}
+{% block contenido_nuevo%}
+
+    <title>{% block title%} Login {% endblock %}</title>
+
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" id="" placeholder="Nombre de usuario">
+        <br>
+        <input type="password" name="password" id="" placeholder="Contraseña de usuario">
+        <br>
+        <button type="submit">Inciar sesion</button>
+    </form>
+
+{% endblock %}
