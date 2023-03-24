@@ -19,38 +19,49 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Inicio</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Inicio</a> <!---dar a elegir ingresar o ver objetos en baul-->
             </li>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'info' %}">Informacion</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'info' %}">Informacion</a> <!---apartado para ingresar objetos-->
                 </li>
 
                 {% if request.user.is_authenticated %}
             
-                <li><a class="nav-link active" aria-current="page" style='text-align:right' href="{% url 'exit' %}">Salir</a></li>
+                <li><a class="nav-link active" aria-current="page" style='text-align:right' href="{% url 'exit' %}">Salir</a></li> <!---exit de la cuenta-->
             
                 {% else %}
             
-                    <li><a class="nav-link active" aria-current="page" href="{% url 'login' %}">Ingresar</a></li>
+                    <li><a class="nav-link active" aria-current="page" href="{% url 'login' %}">Ingresar</a></li> <!---logeo de cuenta-->
             
                 {% endif%}
 
+                {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Registrar</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'register' %}"></a> <!---si esta conectado no mostrar register-->
                 </li>
-                
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Crear cuenta</a> <!---si no esta conectado mostrar register-->
+                </li>
+                {% endif%}
+
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'info' %}">Informacion Creador</a> <!---aca va mi informacion personal-->
+                </li>
+
             </ul>
         </div>
         </div>
     </nav>
-    {% comment %} <div style='text-align:right' " entre los símbolos <></div> {% endcomment %}
-        <a class="float-end" class="nav-link active" aria-current="page" >Usario conectado: {{ user.username | upper}} </a>
+        <a style='color:red' class="float-end" class="nav-link active" aria-current="page" >Usario conectado: {{ user.username | upper}} </a>
         <h1 style='color:rebeccapurple'> Menu </h1>
 
 <hr/>
 <div id="menu">
+
 {% block contenido_nuevo%}{% endblock %}
+
 </body>
 </html>
 

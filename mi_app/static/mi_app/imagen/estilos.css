@@ -1,0 +1,32 @@
+/* fondo inicio */
+body {
+
+  background: url(fondo_inicio.jpg);  
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* fondo login */
+.ingreso_fondo{
+  margin: 100px;
+  padding: 100px;
+  background: url(ingreso_fondo.jpg);  
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+/* fondo register */
+.registro{
+  margin: 20px;
+  padding: 20px;
+  background: url(registro.avif);  
+  height: 140vh;
+  width: 140;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+

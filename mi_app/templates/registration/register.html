@@ -5,10 +5,10 @@
 
     <title>{% block title%} Registro de usuaio {% endblock %}</title>
 
-
+    <div class="registro">
+    <link rel="stylesheet" href="{% static 'mi_app/imagen/estilos.css'%}">
     <form action="" method="POST">
-        {% csrf_token %}
-        
+        {% csrf_token %}    
         <div class="card mx-auto" style="width: 30rem;">
             <div class="card-body">
                 <h5 class="card-title">Complete todos los campos</h5>
@@ -16,12 +16,11 @@
                     {{form | crispy}}
 
                 <a href="{% url 'inicio' %}" class="card-link">inicio</a>
-                <a href="#" class="card-link">iniciar sesion</a>
-
+                <a href="{% url 'login' %}" class="card-link">iniciar sesion</a>
                 <button class="btn btn-sm btn-primary float-end" type="submit">Registrarse</button>
             </div>
         </div>
 
     </form>
-
+    </div>
 {% endblock %}

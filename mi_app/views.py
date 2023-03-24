@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-#para el login------------------------------------------------------------
+#para el login-----------------------------------------------------------------
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
-#para el register------------------------------------------------------------
+#para el register--------------------------------------------------------------
 from .forms import CreacionUsuario
 
 
@@ -14,13 +14,13 @@ def base(request):
 
     return render(request,"mi_app/base.html")
 
-#para el Logout------------------------------------------------------------
+#para el Logout-----------------------------------------------------------------
 def exit(request):
 
     logout(request)
     return redirect("base")
 
-#para el register------------------------------------------------------------
+#para el register---------------------------------------------------------------
 def register(request):
     data={
         'form':CreacionUsuario()
@@ -35,6 +35,8 @@ def register(request):
             return redirect('base')
             
     return render(request,"registration/register.html", data)
+
+#Vistas para trabajar------------------------------------------------------------
 
 @login_required
 def info(request):
