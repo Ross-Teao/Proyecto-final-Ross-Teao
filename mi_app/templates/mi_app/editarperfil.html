@@ -1,0 +1,29 @@
+{% extends "mi_app/base.html" %}
+{% load static %}
+{% block contenido_nuevo%}
+
+<title>{% block title%} Editar perfil {% endblock %}</title>
+
+
+    <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+    <h1>Formulario - Editar Perfil</h1>
+    <h1>De {{usuario}}</h1>
+    
+<body>
+
+    <form action='' method='POST'>{% csrf_token %}
+        <!-- Acá está la magia de Django-->
+        
+        <table>
+
+            {{ miFormulario.as_table }}
+
+        </table>
+
+        <input type="submit", value="Enviar">
+
+    </form>  
+    
+</body>
+
+{% endblock %}

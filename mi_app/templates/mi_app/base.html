@@ -55,6 +55,12 @@
         </div>
     </nav>
         <a style='color:red' class="float-end" class="nav-link active" aria-current="page" >Usario conectado: {{ user.username | upper}} </a>
+        <br>
+        {% if request.user.is_authenticated %}
+        <a style='color:red' class="float-end"class="nav-link active" aria-current="page" href="{% url 'editarperfil' %}">Editar perfil</a> <!---editar perfil-->
+        {% else %}
+        <a style='color:red' class="float-end"class="nav-link active" aria-current="page" href="{% url 'editarperfil' %}"></a>
+        {% endif%}
         <h1 style='color:rebeccapurple'> Menu </h1>
 
 <hr/>
