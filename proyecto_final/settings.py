@@ -31,6 +31,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'crispy_forms',
     'crispy_bootstrap5',
     'django.contrib.admin',
@@ -133,3 +137,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = "base"
 LOGOUT_REDIRECT_URL = "base"
+
+AUTH_PASSWORD_CHANGE_REDIRECT_URL = "base"
+
+ACCOUNT_FORMS = {'change_password': 'mysite.forms.MyCustomChangePasswordForm'}

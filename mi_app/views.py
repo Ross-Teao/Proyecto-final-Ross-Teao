@@ -1,12 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.http import HttpResponse
 #para el login-----------------------------------------------------------------
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
 #para el register--------------------------------------------------------------
-from .forms import CreacionUsuario, editarusuario, User
-
-
+from .forms import CreacionUsuario, editarusuario, User, PasswordChangingForm
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -56,8 +56,11 @@ def editarPerfil(request):
             usuario.email = informacion['email']
             usuario.password1 = informacion['password1']
             usuario.password2 = informacion['password2']
-            usuario.save()
+            usuario.last_name = informacion['last_name']
+            usuario.first_name = informacion['first_name']
 
+            usuario.save()
+            
             return render(request, "mi_app/inicio.html")
 
     else:      
@@ -65,6 +68,19 @@ def editarPerfil(request):
 
     return render(request, "mi_app/editarperfil.html", {"miFormulario": miFormulario, "usuario": usuario})
 
+
+#intento de usar cambio de clave en el menu de base------------------------------
+
+class PasswordChangeView(PasswordChangeView):
+    form_class = PasswordChangingForm
+    success_url = reverse_lazy('password_change_succes')
+    
+
+# def password_success(request):
+#     return render(request,"registration/password_change_success.html")
+
+def password_change_success(request):
+    return render(request,"registration/password_change_success.html")
 
 #Vistas para trabajar------------------------------------------------------------
 
@@ -77,4 +93,3 @@ def info(request):
 def inicio(request):
 
     return render(request,"mi_app/inicio.html")
-
