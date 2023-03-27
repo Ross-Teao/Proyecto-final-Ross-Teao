@@ -20,4 +20,5 @@ urlpatterns = [
     path("",include("mi_app.urls")),
     path('admin/', admin.site.urls),
     path("accounts/",include("django.contrib.auth.urls")),
+
 ]

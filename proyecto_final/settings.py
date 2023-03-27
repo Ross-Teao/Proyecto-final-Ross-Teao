@@ -139,5 +139,3 @@ LOGIN_REDIRECT_URL = "base"
 LOGOUT_REDIRECT_URL = "base"
 
 AUTH_PASSWORD_CHANGE_REDIRECT_URL = "base"
-
-ACCOUNT_FORMS = {'change_password': 'mysite.forms.MyCustomChangePasswordForm'}
