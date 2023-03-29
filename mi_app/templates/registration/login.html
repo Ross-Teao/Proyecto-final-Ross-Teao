@@ -4,7 +4,6 @@
 {% load crispy_forms_tags%}
 
     <title>{% block title%} Login {% endblock %}</title>
-    <div class="ingreso_fondo">
     <link rel="stylesheet" href="{% static 'mi_app/imagen/estilos.css'%}">
     <form action="" method="POST">
         {% csrf_token %}
@@ -23,6 +22,5 @@
         </div>
 
     </form>
-
-    </div>
+    
 {% endblock %}

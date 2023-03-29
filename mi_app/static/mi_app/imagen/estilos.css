@@ -8,19 +8,8 @@ body {
   background-attachment: fixed;
 }
 
-/* fondo login */
-.ingreso_fondo{
-  margin: 100px;
-  padding: 100px;
-  background: url(ingreso_fondo.jpg);  
-  height: 100vh;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-
-}
 /* fondo register */
-.registro{
+.registro {
   margin: 20px;
   padding: 20px;
   background: url(registro.avif);  

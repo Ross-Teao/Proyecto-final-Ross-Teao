@@ -8,23 +8,23 @@ class CreacionUsuario(UserCreationForm):
         model = User
         fields = ['username','first_name','last_name','email','password1','password2']
 
-class editarusuario(UserCreationForm):
+class UserEditForm(UserCreationForm):
+    #Para quitar el apartado de claves debido a que no los quiero en esta parte------------------------------------------
+    def __init__(self, *args, **Kwargs):
+        
+        super(UserEditForm,self).__init__(*args, **Kwargs)
+        del self.fields ['password1']
+        del self.fields ['password2']
     
-    
-    username = forms.CharField()
     email = forms.EmailField()
-    password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
-    password2 = forms.CharField(label="Repetir la contraseña", widget=forms.PasswordInput)
     first_name = forms.CharField()
     last_name = forms.CharField()
-    
+        
     class Meta:
         model = User
-        fields = ['username','email','password1','password2','first_name','last_name']
+        fields = ['username','email','first_name','last_name']
         #Saca los mensajes de ayuda
         help_texts = {k:"" for k in fields}
-        
-        # 'first_name','last_name',
         
 #para usar el cambio de clave en vistas
 

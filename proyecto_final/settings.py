@@ -32,9 +32,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
 
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
     'crispy_forms',
     'crispy_bootstrap5',
     'django.contrib.admin',
@@ -135,7 +132,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Variable de redicceion de login y logout
 
-LOGIN_REDIRECT_URL = "base"
-LOGOUT_REDIRECT_URL = "base"
+# LOGIN_REDIRECT_URL = "base"
+# LOGOUT_REDIRECT_URL = "base"
 
-AUTH_PASSWORD_CHANGE_REDIRECT_URL = "base"
+# AUTH_PASSWORD_CHANGE_REDIRECT_URL = "base"
