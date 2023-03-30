@@ -3,27 +3,28 @@
 {% block contenido_nuevo%}
 
 <title>{% block title%} Editar perfil {% endblock %}</title>
+<link rel="stylesheet" href="{% static 'mi_app/imagen/estilos.css'%}">
 
-
-    <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
-    <h1>Formulario - Editar Perfil</h1>
-    <h1>De {{usuario}}</h1>
+    <h2> Editar perfil de {{usuario}}</h2>
+    <br>
+    <br>
+    <br>
     
 <body>
 
     <form action='' method='POST'>{% csrf_token %}
-        <!-- Acá está la magia de Django-->
         
         <table>
 
             {{ miFormulario.as_table }}
 
         </table>
-
+        <br>
         <input type="submit", value="Enviar">
         
     </form>  
     
 </body>
+
 
 {% endblock %}

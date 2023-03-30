@@ -22,7 +22,7 @@ class UserEditForm(UserCreationForm):
         
     class Meta:
         model = User
-        fields = ['username','email','first_name','last_name']
+        fields = ['email','first_name','last_name']
         #Saca los mensajes de ayuda
         help_texts = {k:"" for k in fields}
         
@@ -32,7 +32,7 @@ class PasswordChangingForm(PasswordChangeForm):
     
     old_password= forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Old Password'}))
     new_password1= forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'New password'}))
-    new_password2= forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Conform new password'}))
+    new_password2= forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm new password'}))
     
     class Meta:
         model = User

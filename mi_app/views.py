@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 #para el login-----------------------------------------------------------------
 from django.contrib.auth import login,logout,authenticate
@@ -7,21 +7,32 @@ from django.contrib.auth.decorators import login_required
 from .forms import CreacionUsuario, UserEditForm, User, PasswordChangingForm
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
+from .models import Avatar
+
  
 # Create your views here.
 
-#Padre el que hereda------------------------------------------------------------
+# Template Padre------------------------------------------------------------
+
+# def base(request):
+#     return render(request, "mi_app/base.html"  )
+
+@login_required
 def base(request):
+    if request.user.id:
+        avatares = Avatar.objects.filter(user=request.user.id)[0].imagen.url
+        return render(request,("mi_app/base.html"), {"url_imagen":avatares } )
+    
+    else:
+            return render(request,"mi_app/base.html")
 
-    return render(request,"mi_app/base.html")
-
-#para el Logout-----------------------------------------------------------------
+# Logout usuario-----------------------------------------------------------------
 def exit(request):
 
     logout(request)
-    return redirect("base")
+    return redirect("inicio")
 
-#para el register---------------------------------------------------------------
+# Register usuario---------------------------------------------------------------
 def register(request):
     data={
         'form':CreacionUsuario()
@@ -37,7 +48,7 @@ def register(request):
             
     return render(request,"registration/register.html", data)
 
-#Editar perfil de usuarios-------------------------------------------------------
+# Editar perfil usuarios-------------------------------------------------------
 
 @login_required
 def editarPerfil(request):
@@ -67,7 +78,7 @@ def editarPerfil(request):
     return render(request, "mi_app/editarperfil.html", {"miFormulario": miFormulario, "usuario": usuario})
 
 
-#intento de usar cambio de clave en el menu de base------------------------------
+# Cambio de clave usuario-----------------------------------------------------------------
 
 class PasswordChangeView(PasswordChangeView):
     form_class = PasswordChangingForm
@@ -78,7 +89,7 @@ def password_change_success(request):
     return render(request,"registration/password_change_success.html")
 
 
-#Vistas para trabajar------------------------------------------------------------
+# Vistas para trabajar------------------------------------------------------------
 
 @login_required
 def info(request):
@@ -87,5 +98,16 @@ def info(request):
 
 @login_required
 def inicio(request):
+    
+    return render(request, "mi_app/inicio.html")
 
-    return render(request,"mi_app/inicio.html")
+# @login_required
+# def inicio(request):
+#     if request.user.id:
+#         avatares = Avatar.objects.filter(user=request.user.id)[0].imagen.url
+#         return render(request,("mi_app/inicio.html"), {"url_imagen":avatares } )
+    
+#     else:
+#             return render(request, "mi_app/inicio.html"  )
+
+

@@ -15,5 +15,5 @@ urlpatterns = [
     #cambio de clave-------------------------------------
     path('change_password/', PasswordChangeView.as_view(template_name="registration/password_change.html"), name="change-password"),
     path('password_change_success/', password_change_success, name='password_change_success'),
-
+    
 ]
