@@ -8,10 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Producto detalle</title>
+    <title>{% block title%} Producto detalle {% endblock %}</title>
 </head>
 <body>
-
+    <h2>Detalles del producto<h2>
+        <br>
     <p><h6>Nombre del Producto:</h6>{{ producto.nombre}}</p>
     <p><h6>Descripcion:</h6>{{producto.descripcion}}</p>
     <p><h6>Precio:</h6>{{producto.precio}}</p>

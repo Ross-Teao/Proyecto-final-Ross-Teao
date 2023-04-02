@@ -9,14 +9,15 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Borrar producto</title>
+    <title>{% block title%} Borrar producto {% endblock %}</title>
 </head>
 <body>
 
     <form method="post"> {% csrf_token %}
         
-    ¿Estas seguro que deseas borrar el siguiente producto?"<p>
-    <h6>Nombre del Producto:</h6>{{ producto.nombre}}</p>
+    <h2>¿Estas seguro que deseas borrar el siguiente producto?<h2>
+        <br>
+    <p><h6>Nombre del Producto:</h6>{{ producto.nombre}}</p>
     <p><h6>Descripcion:</h6>{{producto.descripcion}}</p>
     <p><h6>Precio:</h6>{{producto.precio}}</p>
     {% if producto.imagen %}

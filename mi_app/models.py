@@ -17,10 +17,10 @@ class Avatar(models.Model):
     
 #clase para producto
 class Producto(models.Model):
-
-    nombre= models.CharField(max_length=20)
+    
+    nombre= models.CharField(max_length=100)
     descripcion= models.CharField(max_length=500)
-    precio= models.DecimalField(max_digits=7, decimal_places=0)
+    precio= models.DecimalField(max_digits=100000, decimal_places=0)
     imagen = models.ImageField(upload_to="imagenes", null=True)
     
     def __str__(self):

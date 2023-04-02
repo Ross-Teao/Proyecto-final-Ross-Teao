@@ -8,14 +8,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Producto formulario</title>
+    <title>{% block title%} Producto editar {% endblock %}</title>
 </head>
 <body>
-
+    <h2>Editar el siguiente producto:</h2>
+        <br>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type = "submit", value="Enviar" />
+        <input type = "submit", value="Aplicar los cambios" />
     </form>
     <br>
     <input type="button" onclick="history.back()" name="Volver atras" value="Volver atras">

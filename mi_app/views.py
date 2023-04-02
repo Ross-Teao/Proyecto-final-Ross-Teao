@@ -10,10 +10,10 @@ from mi_app.models import Avatar,Producto
 from django.core.cache import cache
 #ingresar y ver imagen productos
 from django.views import View
-from .forms import ProductoForm, ProductoFormulario
+from .forms import ProductoForm
 from django.urls import reverse
 from django.http.response import HttpResponseRedirect
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
 # Create your views here.
@@ -21,7 +21,7 @@ from django.views.generic import ListView
 # Template Padre------------------------------------------------------------
 
 def base(request):
-    return render(request, "mi_app/base.html"  )
+    return render(request, "mi_app/base.html")
 
 # Logout usuario-----------------------------------------------------------------
 def exit(request):
@@ -45,14 +45,14 @@ def register(request):
             
     return render(request,"registration/register.html", data)
 
-# Editar perfil usuarios-------------------------------------------------------
+######################################## EDITAR EMAIL-FIRS_NAME-LAST_NAME ###############################
+
 
 @login_required
 def editarPerfil(request):
     
-
     usuario = request.user
-
+    
     if request.method == 'POST':
 
         miFormulario = UserEditForm(request.POST)
@@ -75,7 +75,7 @@ def editarPerfil(request):
     return render(request, "mi_app/editarperfil.html", {"miFormulario": miFormulario, "usuario": usuario})
 
 
-# Cambio de clave usuario-----------------------------------------------------------------
+######################################## CAMBIO DE CLAVE USUARIO ########################################
 
 class PasswordChangeView(PasswordChangeView):
     form_class = PasswordChangingForm
@@ -86,16 +86,17 @@ def password_change_success(request):
     return render(request,"registration/password_change_success.html")
 
 
-# Vistas para trabajar------------------------------------------------------------
+######################################## CARGAR PRODUCTO,GUARDAR Y MOSTRAR ##############################
 
 
 class AdmProductos(View):
+    
     def get(self, request):
         productos = Producto.objects.all()
         return render(request, "mi_app/adm-productos.html", {
             "productos": productos
         })
-
+        
 class SaveProducto(View):
     def get(self, request):
         form = ProductoForm()
@@ -109,66 +110,20 @@ class SaveProducto(View):
             form.save()
             return HttpResponseRedirect(reverse('adm-productos'))
 
+######################################## VISTA INICIO ########################################  (use el try-except por un error de "Index Error: list index out of range" y me gusto la solucion que se me ocurrio :D) 
 
 @login_required
 def inicio(request):
-    if request.user.id:
-        avatares = Avatar.objects.filter(user=request.user.id)[0].imagen.url
-        return render(request,("mi_app/inicio.html"), {"url_imagen":avatares } )
-    
-    else:
+    try:
+        if request.user.id:
+            avatares = Avatar.objects.filter(user=request.user.id).first().imagen.url
+            return render(request,("mi_app/inicio.html"), {"url_imagen":avatares } )
+        
+    except:
             return render(request, "mi_app/inicio.html"  )
 
-######################################## CRUD - READ ########################################
 
-def leerproducto(request):
-    
-    producto = Producto.objects.all()
-    
-    contexto= {"producto":producto}
-    print("\n")
-
-    return render(request, "mi_app/leerproducto.html",contexto)
-
-
-
-######################################## CRUD - UPDATE ########################################
-
-def editarProducto(request, Producto_nombre):
-
-
-    producto = Producto.objects.get(nombre=Producto_nombre)
-
-
-    if request.method == 'POST':
-
-
-        miFormulario = ProductoFormulario(request.POST)
-
-        print(miFormulario)
-
-        if miFormulario.is_valid:
-
-            informacion = miFormulario.cleaned_data
-
-            producto.nombre = informacion['nombre']
-            producto.descripcion = informacion['descripcion']
-            producto.precio = informacion['precio']
-
-            producto.save()
-
-
-            return render(request, "mi_app/base.html")
-
-    else:
- 
-        miFormulario = ProductoFormulario(initial={'nombre': producto.nombre, 'descripcion': producto.descripcion,
-                                                   'precio': producto.precio})
-   
-    return render(request, "mi_app/editar_producto.html", {"miFormulario": miFormulario, "Producto_nombre": Producto_nombre})
-
-
-######################################## CLASES BASADAS EN VISTA ########################################
+######################################## Manejo de producto ver-editar-borrar ########################################
 
 class productoList(ListView):
     
@@ -190,3 +145,11 @@ class productoDelete(DeleteView):
     
     model = Producto
     success_url = "/producto/list"
+    
+########################################  ########################################
+
+
+# def nova(request):
+#     if request.user.id:
+#         avatares = Avatar.objects.filter(user=request.user.id).first().imagen.url
+#         return render(request,{"url_imagen":avatares } )

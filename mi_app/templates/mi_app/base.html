@@ -28,14 +28,12 @@
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'add-producto' %}"></a> <!---si no esta conectado mostrar register-->
+                    <!---NADA-->
                 </li>
                 {% endif%}
 
                 {% if request.user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'register' %}"></a> <!---si esta conectado no mostrar register-->
-                </li>
+                <!---NADA-->
                 {% else %}
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Crear cuenta</a> <!---si no esta conectado mostrar register-->
@@ -47,9 +45,7 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'adm-productos' %}">Mostrar producto</a> <!---aca va mi informacion personal-->
                 </li>
                 {% else %}
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'adm-productos' %}"></a> <!---aca va mi informacion personal-->
-                </li>
+                    <!---NADA-->
                 {% endif%}
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'add-producto' %}">Info-creador</a> <!---aca va mi informacion personal-->
@@ -60,9 +56,7 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'List' %}">Gestion/producto</a> <!---aca va mi informacion personal-->
                 </li>
                 {% else %}
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'List' %}"></a> <!---aca va mi informacion personal-->
-                </li>
+                <!---NADA-->
                 {% endif%}
 
                 {% if request.user.is_authenticated %}
@@ -81,23 +75,23 @@
     </nav>
         
         {% if request.user.is_authenticated %}  <!---Manejo usuario conectado para mostrar nombre y foto(se necesita replegar la foto sobre los otros templates...)-->
-
             <a style='color:red' class="float-end" class="nav-link active" aria-current="page" >Usario conectado: {{ user.username | upper}}<img src="{{url_imagen}}" style="height: 40px; width: 45px;" /></a>
-            
-        {% endif%}
-        
-        <br>
-        <br>
-        {% if request.user.is_authenticated %}  <!---Manejo editar perfil usuario conectado y no conectado-->
-        <a style='color:red' class="float-end"class="nav-link active" aria-current="page" href="{% url 'editarperfil' %}">Editar perfil</a> 
-        
-        {% else %}
-        <a style='color:red' class="float-end"class="nav-link active" aria-current="page" href="{% url 'editarperfil' %}"></a>
         {% endif%}
 
+
+        <br>
+        <br>
+        {% if request.user.is_authenticated %}  <!---Manejo editar perfil usuario conectado y cambio de clave-->
+        <a style='color:red' class="float-end"class="nav-link active" aria-current="page" href="{% url 'editarperfil' %}">Editar perfil</a> 
         <br>
         <a style='color:red' class="float-end"class="nav-link active" aria-current="page" href="{% url 'change-password' %}">Cambio de clave</a>
-        <h1 style='color:rebeccapurple'> Menu </h1>
+        {% else %}
+        <!---NADA-->
+        {% endif%}
+        <br>
+        <h6><div style='color:black' class="float-end"class="nav-link active" aria-current="page" id="current_date"></p></h6><script>document.getElementById("current_date").innerHTML = Date();</script>
+        
+<br>         
 <hr/>
 <div id="menu">
 
