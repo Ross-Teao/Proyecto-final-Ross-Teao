@@ -1,6 +1,7 @@
 from django import forms 
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.models import User
+from .models import Producto
 
 class CreacionUsuario(UserCreationForm):
     
@@ -37,3 +38,21 @@ class PasswordChangingForm(PasswordChangeForm):
     class Meta:
         model = User
         field = ['old_password','new_password1','new_password2']
+
+#clase para productos       
+class ProductoForm(forms.ModelForm):
+    
+    class Meta:
+        model = Producto
+        fields = ['id','nombre','descripcion','precio','imagen']
+    
+    nombre = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control"}),  max_length=50)
+    descripcion = forms.CharField (widget=forms.Textarea(attrs={"class":"form-control"}), max_length=100)
+    precio = forms.DecimalField(widget=forms.NumberInput(attrs={"class":"form-control"}), max_digits=7, decimal_places=2)
+    imagen = forms.ImageField(label="Avatar", required=False, widget=forms.FileInput(attrs={'class':'form-control'}))
+    
+class ProductoFormulario(forms.Form):
+    
+    nombre= forms.CharField(widget=forms.TextInput(attrs={"class":"form-control"}),  max_length=50)
+    descripcion= forms.CharField (widget=forms.Textarea(attrs={"class":"form-control"}), max_length=100)
+    precio= forms.DecimalField(widget=forms.NumberInput(attrs={"class":"form-control"}), max_digits=7, decimal_places=2)

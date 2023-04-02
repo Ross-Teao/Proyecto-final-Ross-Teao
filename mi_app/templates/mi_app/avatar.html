@@ -1,9 +1,0 @@
-{% extends "mi_app/base.html" %}
-{% load static %}
-{% block contenido_nuevo%}
-
-{% if request.user.is_authenticated %}
-<a style='color:red' class="float-end" class="nav-link active" aria-current="page" >Usario conectado: {{ user.username | upper}}<img src="{{url_imagen}}" style="height: 40px; width: 45px;" /></a>
-{%endif%}
-
-{%endblock%}

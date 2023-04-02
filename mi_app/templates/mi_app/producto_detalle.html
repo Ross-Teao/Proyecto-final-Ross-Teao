@@ -1,0 +1,30 @@
+{% extends "mi_app/base.html" %}
+{% load static %}
+{% block contenido_nuevo%}
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto detalle</title>
+</head>
+<body>
+
+    <p><h6>Nombre del Producto:</h6>{{ producto.nombre}}</p>
+    <p><h6>Descripcion:</h6>{{producto.descripcion}}</p>
+    <p><h6>Precio:</h6>{{producto.precio}}</p>
+    {% if producto.imagen %}
+    <p>Imagen: <scope="row"><img src="{{ producto.imagen.url }}" style="height: 50px; width: 50px;" alt="..."></p>
+    {% else %}
+    <td scope="row" ><img src="" style="height: 50px; width: 50px;" alt="no imagen"></td>
+    {% endif %}
+    <p>
+        <a href= "{% url 'List' %}">Regresar</a>
+    </p>
+
+</body>
+</html>
+
+{% endblock%}

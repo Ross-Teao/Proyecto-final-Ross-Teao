@@ -22,18 +22,14 @@
                 <a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Inicio</a> <!---dar a elegir ingresar o ver objetos en baul-->
             </li>
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'info' %}">Informacion</a> <!---apartado para ingresar objetos-->
-                </li>
-
                 {% if request.user.is_authenticated %}
-            
-                    <li><a class="nav-link active" aria-current="page" style='text-align:right' href="{% url 'exit' %}">Salir</a></li> <!---exit de la cuenta-->
-            
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'add-producto' %}">Agregar producto</a> <!---aca va mi informacion personal--> <!---apartado para ingresar objetos-->
+                </li>
                 {% else %}
-            
-                    <li><a class="nav-link active" aria-current="page" href="{% url 'login' %}">Ingresar</a></li> <!---logeo de cuenta-->
-            
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'add-producto' %}"></a> <!---si no esta conectado mostrar register-->
+                </li>
                 {% endif%}
 
                 {% if request.user.is_authenticated %}
@@ -46,26 +42,59 @@
                 </li>
                 {% endif%}
 
+                {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'info' %}">Informacion Creador</a> <!---aca va mi informacion personal-->
+                    <a class="nav-link active" aria-current="page" href="{% url 'adm-productos' %}">Mostrar producto</a> <!---aca va mi informacion personal-->
                 </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'adm-productos' %}"></a> <!---aca va mi informacion personal-->
+                </li>
+                {% endif%}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'add-producto' %}">Info-creador</a> <!---aca va mi informacion personal-->
+                </li>
+
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'List' %}">Gestion/producto</a> <!---aca va mi informacion personal-->
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'List' %}"></a> <!---aca va mi informacion personal-->
+                </li>
+                {% endif%}
+
+                {% if request.user.is_authenticated %}
+            
+                    <li><a class="nav-link active" aria-current="page" style='text-align:right' href="{% url 'exit' %}">Salir</a></li> <!---exit de la cuenta-->
+            
+                {% else %}
+            
+                    <li><a class="nav-link active" aria-current="page" href="{% url 'login' %}">Ingresar</a></li> <!---logeo de cuenta-->
+            
+                {% endif%}
 
             </ul>
         </div>
         </div>
     </nav>
-        {% if request.user.is_authenticated %}
-        <a style='color:red' class="float-end" class="nav-link active" aria-current="page" >Usario conectado: {{ user.username | upper}}<img src="{{url_imagen}}" style="height: 40px; width: 45px;" /></a>
-        {% endif%}
+        
+        {% if request.user.is_authenticated %}  <!---Manejo usuario conectado para mostrar nombre y foto(se necesita replegar la foto sobre los otros templates...)-->
 
+            <a style='color:red' class="float-end" class="nav-link active" aria-current="page" >Usario conectado: {{ user.username | upper}}<img src="{{url_imagen}}" style="height: 40px; width: 45px;" /></a>
+            
+        {% endif%}
+        
         <br>
         <br>
-        {% if request.user.is_authenticated %}
-        <a style='color:red' class="float-end"class="nav-link active" aria-current="page" href="{% url 'editarperfil' %}">Editar perfil</a> <!---editar perfil-->
+        {% if request.user.is_authenticated %}  <!---Manejo editar perfil usuario conectado y no conectado-->
+        <a style='color:red' class="float-end"class="nav-link active" aria-current="page" href="{% url 'editarperfil' %}">Editar perfil</a> 
         
         {% else %}
         <a style='color:red' class="float-end"class="nav-link active" aria-current="page" href="{% url 'editarperfil' %}"></a>
         {% endif%}
+
         <br>
         <a style='color:red' class="float-end"class="nav-link active" aria-current="page" href="{% url 'change-password' %}">Cambio de clave</a>
         <h1 style='color:rebeccapurple'> Menu </h1>

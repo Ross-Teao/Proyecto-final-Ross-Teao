@@ -8,3 +8,4 @@ from .models import * # Importamos el archivo models
 admin.site.register(ContentType)
 admin.site.register(Permission)
 admin.site.register(Avatar)
+admin.site.register(Producto)

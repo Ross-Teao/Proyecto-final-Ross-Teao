@@ -5,7 +5,7 @@
 
     <title>{% block title%} Registro de usuaio {% endblock %}</title>
 
-    <div class="registro">
+    {% comment %} <div class="registro"> {% endcomment %}
     <link rel="stylesheet" href="{% static 'mi_app/imagen/estilos.css'%}">
     <form action="" method="POST">
         {% csrf_token %}    
