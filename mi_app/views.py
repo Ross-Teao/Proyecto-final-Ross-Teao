@@ -110,7 +110,7 @@ class SaveProducto(View):
             form.save()
             return HttpResponseRedirect(reverse('adm-productos'))
 
-######################################## VISTA INICIO ########################################  (use el try-except por un error de "Index Error: list index out of range" y me gusto la solucion que se me ocurrio :D) 
+######################################## VISTA INICIO ########################################  (use el try-except por un error de "Index Error: list index out of range" y me gusto la solucion que se me ocurrio :D error por usuario sin foto de perfil) 
 
 @login_required
 def inicio(request):
@@ -147,9 +147,3 @@ class productoDelete(DeleteView):
     success_url = "/producto/list"
     
 ########################################  ########################################
-
-
-# def nova(request):
-#     if request.user.id:
-#         avatares = Avatar.objects.filter(user=request.user.id).first().imagen.url
-#         return render(request,{"url_imagen":avatares } )

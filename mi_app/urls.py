@@ -19,5 +19,4 @@ urlpatterns = [
     path(r'^(?P<pk>\d+)$',productoDetalle.as_view(), name="Detail"),
     path(r'^editar/(?P<pk>\d+)$', productoUpdate.as_view(), name="Edit"),
     path(r'^borrar/(?P<pk>\d+)$', productoDelete.as_view(), name="Delete"),
-    
 ]

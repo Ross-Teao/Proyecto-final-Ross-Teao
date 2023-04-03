@@ -42,7 +42,7 @@
 
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'adm-productos' %}">Mostrar producto</a> <!---aca va mi informacion personal-->
+                    <a class="nav-link active" aria-current="page" href="{% url 'adm-productos' %}">Mostrar producto</a> <!---sin info-->
                 </li>
                 {% else %}
                     <!---NADA-->
@@ -51,16 +51,17 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'add-producto' %}">Info-creador</a> <!---aca va mi informacion personal-->
                 </li>
 
-                {% if request.user.is_authenticated %}
+                {% if request.user.is_authenticated and user.is_superuser%}
+                
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'List' %}">Gestion/producto</a> <!---aca va mi informacion personal-->
+                    <a class="nav-link active" aria-current="page" href="{% url 'List' %}">Gestion/producto</a> <!---Ver editar y borrar-->
                 </li>
                 {% else %}
                 <!---NADA-->
                 {% endif%}
 
                 {% if request.user.is_authenticated %}
-            
+                
                     <li><a class="nav-link active" aria-current="page" style='text-align:right' href="{% url 'exit' %}">Salir</a></li> <!---exit de la cuenta-->
             
                 {% else %}
@@ -90,7 +91,12 @@
         {% endif%}
         <br>
         <h6><div style='color:black' class="float-end"class="nav-link active" aria-current="page" id="current_date"></p></h6><script>document.getElementById("current_date").innerHTML = Date();</script>
-        
+
+        {% if user.is_superuser %}
+            <p>Hello, admin.</p>
+        {% else %}
+            <p>Hello, ordinary visitor.</p>
+        {% endif %}
 <br>         
 <hr/>
 <div id="menu">
