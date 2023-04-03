@@ -18,18 +18,42 @@ from django.views.generic.detail import DetailView
 from django.views.generic import ListView
 # Create your views here.
 
-# Template Padre------------------------------------------------------------
+######################################## TEMPLATE PADRE ###############################
 
 def base(request):
     return render(request, "mi_app/base.html")
 
-# Logout usuario-----------------------------------------------------------------
+######################################## TEMPLATE PORTADA ###############################
+
+def portada(request):
+    return render(request, "mi_app/portada.html")
+
+######################################## TEMPLATE PADRE ###############################
+
+def base(request):
+    return render(request, "mi_app/base.html")
+
+######################################## TEMPLATE INICIO ########################################  (use el try-except por un error de "Index Error: list index out of range" y me gusto la solucion que se me ocurrio :D error por usuario sin foto de perfil) 
+
+@login_required
+def inicio(request):
+    try:
+        if request.user.id:
+            avatares = Avatar.objects.filter(user=request.user.id).first().imagen.url
+            return render(request,("mi_app/inicio.html"), {"url_imagen":avatares } )
+        
+    except:
+            return render(request, "mi_app/inicio.html"  )
+
+######################################## LOGOUT USUARIO ###############################
+
 def exit(request):
 
     logout(request)
-    return redirect("inicio")
+    return redirect("portada")
 
-# Register usuario---------------------------------------------------------------
+######################################## REGISTER USUARIO ###############################
+
 def register(request):
     data={
         'form':CreacionUsuario()
@@ -45,7 +69,7 @@ def register(request):
             
     return render(request,"registration/register.html", data)
 
-######################################## EDITAR EMAIL-FIRS_NAME-LAST_NAME ###############################
+####################### EDITAR EMAIL-FIRS_NAME-LAST_NAME ##############################
 
 
 @login_required
@@ -110,18 +134,6 @@ class SaveProducto(View):
             form.save()
             return HttpResponseRedirect(reverse('adm-productos'))
 
-######################################## VISTA INICIO ########################################  (use el try-except por un error de "Index Error: list index out of range" y me gusto la solucion que se me ocurrio :D error por usuario sin foto de perfil) 
-
-@login_required
-def inicio(request):
-    try:
-        if request.user.id:
-            avatares = Avatar.objects.filter(user=request.user.id).first().imagen.url
-            return render(request,("mi_app/inicio.html"), {"url_imagen":avatares } )
-        
-    except:
-            return render(request, "mi_app/inicio.html"  )
-
 
 ######################################## Manejo de producto ver-editar-borrar ########################################
 
@@ -146,4 +158,5 @@ class productoDelete(DeleteView):
     model = Producto
     success_url = "/producto/list"
     
-########################################  ########################################
+
+
