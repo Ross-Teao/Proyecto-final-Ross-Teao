@@ -1,14 +1,10 @@
 from django.shortcuts import render, redirect
-#para el login-----------------------------------------------------------------
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
-#para el register--------------------------------------------------------------
-from .forms import CreacionUsuario, UserEditForm, User, PasswordChangingForm
+from .forms import CreacionUsuario, UserEditForm, PasswordChangingForm
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from mi_app.models import Avatar,Producto
-from django.core.cache import cache
-#ingresar y ver imagen productos
 from django.views import View
 from .forms import ProductoForm
 from django.urls import reverse
@@ -16,22 +12,23 @@ from django.http.response import HttpResponseRedirect
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
+
 # Create your views here.
 
 ######################################## TEMPLATE PADRE ###############################
 
 def base(request):
-    return render(request, "mi_app/base.html")
+    return render(request, "mi_app/portada.html")
 
 ######################################## TEMPLATE PORTADA ###############################
 
 def portada(request):
     return render(request, "mi_app/portada.html")
 
-######################################## TEMPLATE PADRE ###############################
+######################################## TEMPLATE INFO CREADOR ###############################
 
-def base(request):
-    return render(request, "mi_app/base.html")
+def info_creador(request):
+    return render(request, "mi_app/info_creador.html")
 
 ######################################## TEMPLATE INICIO ########################################  (use el try-except por un error de "Index Error: list index out of range" y me gusto la solucion que se me ocurrio :D error por usuario sin foto de perfil) 
 
@@ -65,7 +62,7 @@ def register(request):
             user_creation_form.save()
             user = authenticate(username= user_creation_form.cleaned_data['username'], password= user_creation_form.cleaned_data['password1'])
             login(request,user)
-            return redirect('base')
+            return redirect('inicio')
             
     return render(request,"registration/register.html", data)
 

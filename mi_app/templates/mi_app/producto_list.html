@@ -23,7 +23,9 @@
                 <p>
                     <a href= "{% url 'Detail' Producto.id %}">Ver</a>
                     <a href= "{% url 'Edit' Producto.id %}">Editar</a>
+                    {% if user.is_superuser%}
                     <a href= "{% url 'Delete' Producto.id %}">Borrar</a>
+                    {% endif%}
                 </p>
             </li>
         {% endfor %}

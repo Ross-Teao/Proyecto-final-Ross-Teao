@@ -2,6 +2,7 @@
 {% load static %}
 {% block contenido_nuevo%}
 
+{% if user.is_superuser%}  <!--- solo el admin puede borrar-->
 <html lang="en"> 
 <head>
     <meta charset="UTF-8">
@@ -34,5 +35,9 @@
 
 </body>
 </html>
+
+{% else%}
+<meta http-equiv="Refresh" content="0; url='http://127.0.0.1:8000/producto/list'" /> <!---en caso de acceder a la ruta redireccionar-->
+{% endif %}
 
 {% endblock %}

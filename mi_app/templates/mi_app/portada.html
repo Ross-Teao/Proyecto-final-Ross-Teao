@@ -2,42 +2,39 @@
 {% load static %}
 {% block contenido_nuevo%}
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'mi_app/imagen/estilos.css'%}">
+<title>{% block title%} Portada {% endblock %}</title>
+{% if request.user.is_authenticated %}
+
+<meta http-equiv="Refresh" content="0; url='http://127.0.0.1:8000/inicio/'" />   <!---redireccion para que usuario conetados no lo vean -->
+
+{% else %}
   <body>
     <!-- Aquí empieza el encabezado principal que se mantendrá en todas las páginas del sitio web -->
 
     <header>
-      <h1>Encabezado</h1>
+      <h1>Global Market</h1>
     </header>
 
     <nav>
       <ul>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Nuestro equipo</a></li>
-        <li><a href="#">Proyectos</a></li>
+        <li><a href="{% url 'info_creador' %}">Info creador</a></li>
         <li><a href="#">Contacto</a></li>
       </ul>
-
-      <!-- Un formulario de búsqueda es una forma no-lineal de hacer búsquedas en un sitio web. -->
-
-      <form>
-        <input type="search" name="q" placeholder="Buscar" />
-        <input type="submit" value="¡Vamos!" />
-      </form>
-    </nav>
 
     <!-- Aquí está el contenido principal de nuestra página -->
     <main>
       <!-- Contiene un artículo -->
       <article>
-        <h2>Título del artículo</h2>
+        <h2>¿Que es Market Global?</h2>
 
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Donec a diam
-          lectus. Set sit amet ipsum mauris. Maecenas congue ligula as quam
-          viverra nec consectetur ant hendrerit. Donec et mollis dolor. Praesent
-          et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt
-          congue enim, ut porta lorem lacinia consectetur.
-        </p>
+        <h4 style="color:#FF5733;"><em>
+
+          Imagina un lugar donde puedas vender todo lo que quieras con un perfil privado y ganancias totales del 95% de la venta... Exacto!!  eso es Global Market 
+          tu tienda de confianza donde podrás vender y comprar todo lo que gustes… En Global Market lo único que puede limitarte es tu imaginación!!!... y tal vez tu billetera... pero bueno.. te esperamos!!!
+
+        </em></h4>
 
         <h3>Subsección</h3>
 
@@ -70,26 +67,25 @@
         </p>
       </article>
 
-      <!-- el contenido aparte también se puede anidar dentro del contenido principal -->
-      <aside>
-        <h2>Relacionado</h2>
-
-        <ul>
-          <li><a href="#">Oh, me gusta estar junto al mar</a></li>
-          <li><a href="#">Oh, me gusta estar junto al mar</a></li>
-          <li><a href="#">Aunque en el norte de Inglaterra</a></li>
-          <li><a href="#">Nunca deja de llover</a></li>
-          <li><a href="#">Oh, bueno...</a></li>
-        </ul>
-      </aside>
-    </main>
-
-    <!-- Y aquí está nuestro pie de página principal que se utiliza en todas las páginas de nuestro sitio web -->
+    <!-- salto de lineas -->
+      <br><br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
 
     <footer>
-      <p>©Copyright 2050 de nadie. Todos los derechos revertidos.</p>
+      <div align="center"><font color="#FFFFFF" style="color:#E400FF;" size="+1"><marquee bgcolor="#000000" direction="right" loop="100">©Copyright 2070 de Global Market. Todos los derechos en proceso.</marquee></font></div>
     </footer>
   </body>
 </html>
 
+{% endif %}
 {% endblock %}

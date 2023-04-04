@@ -12,22 +12,28 @@
     <div class="container">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-        <a class="navbar-brand" href="#">Proyecto</a>
+        <a class="navbar-brand" href="#">Global Market</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+                
+            {% if request.user.is_authenticated %}
+
+            {%else%}
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'portada' %}">portada</a> <!---dar a elegir ingresar o ver objetos en baul-->
+                <a class="nav-link active" aria-current="page" href="{% url 'portada' %}">portada</a> <!---portada para visitantes-->
             </li>
+            {% endif%}
+
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Inicio</a> <!---dar a elegir ingresar o ver objetos en baul-->
+                <a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Inicio</a> <!---Inicio para usuarios con login-->
             </li>
             <ul class="navbar-nav">
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'add-producto' %}">Agregar producto</a> <!---aca va mi informacion personal--> <!---apartado para ingresar objetos-->
+                    <a class="nav-link active" aria-current="page" href="{% url 'add-producto' %}">Agregar producto</a> <!---apartado para ingresar objetos-->
                 </li>
                 {% else %}
                 <li class="nav-item">
@@ -51,10 +57,10 @@
                     <!---NADA-->
                 {% endif%}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'add-producto' %}">Info-creador</a> <!---aca va mi informacion personal-->
+                    <a class="nav-link active" aria-current="page" href="{% url 'info_creador' %}">Info creador</a> <!---aca va mi informacion personal-->
                 </li>
 
-                {% if request.user.is_authenticated and user.is_superuser%}
+                {% if user.is_superuser or user.is_staff%}
                 
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'List' %}">Gestion/producto</a> <!---Ver editar y borrar-->
@@ -97,6 +103,7 @@
         <h6><div style='color:black' class="float-end"class="nav-link active" aria-current="page" id="current_date"></p></h6><script>document.getElementById("current_date").innerHTML = Date();</script><!---Hora-->
         <br>
 
+        <!---Manejo que tipo de usuario se conecto--> 
         {% if user.is_superuser  %}
         <a style='color:red' class="float-end" class="nav-link active" aria-current="page" >Usuario admin</a>
         {% elif user.is_staff %}
