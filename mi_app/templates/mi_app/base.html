@@ -23,7 +23,7 @@
 
             {%else%}
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'portada' %}">portada</a> <!---portada para visitantes-->
+                <a class="nav-link active" aria-current="page" href="{% url 'portada' %}">Portada</a> <!---portada para visitantes-->
             </li>
             {% endif%}
 
@@ -79,6 +79,8 @@
             
                 {% endif%}
 
+                <li><a class="nav-link active" aria-current="page" href="{% url 'contacto_home' %}">Contacto</a></li> <!---logeo de cuenta-->
+                
             </ul>
         </div>
         </div>
@@ -100,7 +102,7 @@
         {% endif%}
 
         <br>
-        <h6><div style='color:black' class="float-end"class="nav-link active" aria-current="page" id="current_date"></p></h6><script>document.getElementById("current_date").innerHTML = Date();</script><!---Hora-->
+        <h6><div style='color:red' class="float-end"class="nav-link active" aria-current="page" id="current_date"></p></h6><script>document.getElementById("current_date").innerHTML = Date();</script><!---Hora-->
         <br>
 
         <!---Manejo que tipo de usuario se conecto--> 

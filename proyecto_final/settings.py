@@ -143,3 +143,10 @@ LOGOUT_REDIRECT_URL = "inicio"
 
 MEDIA_ROOT = BASE_DIR / "files" or os.path.join(BASE_DIR, 'media')
 MEDIA_URL = "/media-files/" or '/media/'
+
+#Email settings
+
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = '5c001e7d3fc756'
+EMAIL_HOST_PASSWORD = '873b51fe80002f'
+EMAIL_PORT = '2525'

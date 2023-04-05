@@ -1,4 +1,4 @@
-from django import forms 
+from django import forms
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from .models import Producto
@@ -56,3 +56,14 @@ class ProductoFormulario(forms.Form):
     nombre= forms.CharField(widget=forms.TextInput(attrs={"class":"form-control"}),  max_length=50)
     descripcion= forms.CharField (widget=forms.Textarea(attrs={"class":"form-control"}), max_length=100)
     precio= forms.DecimalField(widget=forms.NumberInput(attrs={"class":"form-control"}), max_digits=7, decimal_places=2)
+    
+    
+#mensaje --------------------------------------------------------------------------------
+    
+class ContactForm(forms.Form):
+    
+    name = forms.CharField(label='Nombre y Apellido', required=True, min_length=5, max_length=25, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Introduzca sus datos'}))
+
+    email = forms.EmailField(label='Correo Electrónico', required=True, max_length=100, widget=forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Introduzca su email'}))
+
+    message = forms.CharField(label='Mensaje', required=True, widget=forms.Textarea(attrs={'class':'form-control', 'placeholder':'Escriba aquí su mensaje...','rows':5}))

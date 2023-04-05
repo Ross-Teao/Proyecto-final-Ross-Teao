@@ -1,5 +1,5 @@
 from django.urls import path
-from mi_app.views import base, inicio, exit, register, editarPerfil, PasswordChangeView, password_change_success, productoList,productoDetalle,productoUpdate,productoDelete,portada,info_creador
+from mi_app.views import base, inicio, exit, register, editarPerfil, PasswordChangeView, password_change_success, productoList,productoDetalle,productoUpdate,productoDelete,portada,info_creador, contacto_home, contacto_contacto
 from . import views
 
 
@@ -21,4 +21,8 @@ urlpatterns = [
     path(r'^(?P<pk>\d+)$',productoDetalle.as_view(), name="Detail"),
     path(r'^editar/(?P<pk>\d+)$', productoUpdate.as_view(), name="Edit"),
     path(r'^borrar/(?P<pk>\d+)$', productoDelete.as_view(), name="Delete"),
+    
+    #email
+    path('contacto_home/', contacto_home, name="contacto_home"),
+    path('contacto_contacto/', contacto_contacto, name="contacto_contacto"),
 ]

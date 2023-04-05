@@ -6,13 +6,13 @@ from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from mi_app.models import Avatar,Producto
 from django.views import View
-from .forms import ProductoForm
+from .forms import ProductoForm, ContactForm
 from django.urls import reverse
 from django.http.response import HttpResponseRedirect
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
-
+from django.core.mail import EmailMessage
 # Create your views here.
 
 ######################################## TEMPLATE PADRE ###############################
@@ -156,4 +156,59 @@ class productoDelete(DeleteView):
     success_url = "/producto/list"
     
 
+######################################## ENVIAR CORREO ########################################
 
+
+def contacto_home(request):
+    
+    return render(request, "mi_app/contacto_home.html")
+
+
+def contacto_contacto(request):
+    
+    # print('Tipo de petición: {}'.format(request.method))
+    contact_form = ContactForm()
+    
+    if request.method == 'POST':
+        # Estoy enviando el formulario
+        contact_form = ContactForm(data=request.POST)
+
+        if contact_form.is_valid():
+            name = request.POST.get('name', '')
+            email = request.POST.get('email', '')
+            message = request.POST.get('message', '')
+
+            # Enviar el correo electrónico
+            email = EmailMessage(
+                'Mensaje de contacto recibido',
+                'Mensaje enviado por {} <{}>:\n\n{}'.format(name,email,message),
+                email,
+                ['b6e5f6c13f8436@inbox.mailtrap.io'],
+                reply_to=[email],
+            )
+            
+            try:
+                email.send()
+                # Está todo OK
+                return redirect(reverse('contacto_contacto')+'?ok')
+            except:
+                # Ha habido un error y retorno a ERROR
+                return redirect(reverse('contacto_contacto')+'?error')
+
+    return render(request, 'mi_app/contacto_contacto.html', {'form':contact_form})
+
+
+
+
+
+
+
+email = EmailMessage(
+    'Hello',
+    'Body goes here',
+    'from@example.com',
+    ['to1@example.com', 'to2@example.com'],
+    ['bcc@example.com'],
+    reply_to=['another@example.com'],
+    headers={'Message-ID': 'foo'},
+)
