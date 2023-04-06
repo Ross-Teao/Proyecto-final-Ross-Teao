@@ -1,0 +1,58 @@
+############## Requerimientos entrega proyecto final ##############
+  
+1- La web tendra admin, perfiles registro,paginas y formularios                                       | ok
+
+----------------------------------------------------------------------------------------------------------------
+2- Se tiene que subir a github, en el readme mi info moderada de lo que hice                          | 
+
+----------------------------------------------------------------------------------------------------------------
+3- Subir video a github en el mismo repo donde se muestra la web funcionado en menos de 10 mint       | 
+(mostrar lo que hace la web)
+
+----------------------------------------------------------------------------------------------------------------
+4- hacer 1 carpeta en el repo al lado del readme con 3 casos de prueba documentados                   |
+ejemplo: 
+## caso1: 1-persona crea su cuenta, 2-se loguea, 3- y hace click en agregar producto
+
+## caso2: 1-persona le da nombre,descripcion,precio, imagen al producto 2-Persona le da click a guardar,
+3-persona le da click a mostrar producto
+
+## caso3: 1-admin se loguea,2- solo el puede ver gestion/producto,3- edita el producto subido por la persona y
+lo verifica en el mismo punto de gestion/producto o mostrar producto.
+----------------------------------------------------------------------------------------------------------------
+
+5- Crear un acceso visible info-creador(o about-me) donde se habla un poco de mi y del proyecto       |
+(tratar de agregar un read more dentro del html al final para que nos lleve a un lugar con mas datos)
+(el about me y la pagina de inicio siempre tienen que estar disponibles aun que no este conectado ver eso)
+
+6- Crear una html donde se muestre mi vistas generales con un poco de informacion y un boton leer mas | 
+ (talves usarla en el inicio y adjuntar foto de la vista con un poco de info y despues leer mas
+que lleve a otro html donde se muestra masinformacion)
+
+7- El punto de editar y borrar los productos solo lo puede hacer el admin.                            | 
+(tengio que configurarlo para que solo el admin lo pueda hacer)
+ 
+8- 
+
+9- 
+
+10- 
+
+
+
+read.me para el repositorio:#####################################
+
+Proyecto-final-Teao
+Mi proyecto trata de una web para vender de forma anonima donde:
+
+1- Un visitante puede ver info-creador y la portada de la pagina donde se muestra las informacion general.
+
+2- Un usuario registrado puede publicar sus productos y ver la lista de productos global.
+
+3- El usuario Staff puede hacer todo lo anterior y como extra puede editar el contenido subido.
+
+4- El usuario admin puede hacer todo lo anterior y como extra eliminar el contenido subido lo cual el usuario staff no puede.
+
+5- Todos los usuarios pueden editar algunos puntos de su perfil (priemr nombre,segundo nombre y correo).
+
+6- Todos los usuarios pueden cambiar su clave.

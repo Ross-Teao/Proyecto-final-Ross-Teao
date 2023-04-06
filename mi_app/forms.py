@@ -17,9 +17,9 @@ class UserEditForm(UserCreationForm):
         del self.fields ['password1']
         del self.fields ['password2']
     
-    email = forms.EmailField()
-    first_name = forms.CharField()
-    last_name = forms.CharField()
+    email = forms.EmailField(widget=forms.TextInput(attrs={"class":"form-control"}),  max_length=50)
+    first_name = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control"}),  max_length=50)
+    last_name = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control"}),  max_length=50)
         
     class Meta:
         model = User

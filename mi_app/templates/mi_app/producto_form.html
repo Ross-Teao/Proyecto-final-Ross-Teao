@@ -2,6 +2,8 @@
 {% load static %}
 {% block contenido_nuevo%}
 
+{% if user.is_superuser or user.is_staff%}
+
 <html lang="en"> 
 <head>
     <meta charset="UTF-8">
@@ -22,5 +24,11 @@
     <input type="button" onclick="history.back()" name="Volver atras" value="Volver atras">
 </body>
 </html>
+
+{% elif request.user.is_authenticated%}
+<meta http-equiv="Refresh" content="0; url='http://127.0.0.1:8000/inicio/'" />   <!---redireccion para que usuario no conetados no lo vean -->
+{% else %}
+<meta http-equiv="Refresh" content="0; url='http://127.0.0.1:8000/portada/'" />   <!---redireccion para que usuario no conetados no lo vean -->
+{% endif %}
 
 {% endblock%}

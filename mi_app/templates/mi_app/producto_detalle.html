@@ -1,6 +1,9 @@
 {% extends "mi_app/base.html" %}
 {% load static %}
 {% block contenido_nuevo%}
+
+{% if user.is_superuser or user.is_staff%}
+
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
@@ -27,5 +30,11 @@
 
 </body>
 </html>
+
+{% elif request.user.is_authenticated%}
+<meta http-equiv="Refresh" content="0; url='http://127.0.0.1:8000/inicio/'" />   <!---redireccion para que usuario no conetados no lo vean -->
+{% else %}
+<meta http-equiv="Refresh" content="0; url='http://127.0.0.1:8000/portada/'" />   <!---redireccion para que usuario no conetados no lo vean -->
+{% endif %}
 
 {% endblock%}
