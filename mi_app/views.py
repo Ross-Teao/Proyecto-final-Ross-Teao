@@ -49,6 +49,13 @@ def exit(request):
     logout(request)
     return redirect("portada")
 
+
+######################################## TEMPLATE NORMAS ###############################
+
+def normas(request):
+    return render(request, "mi_app/normas.html")
+
+
 ######################################## REGISTER USUARIO ###############################
 
 def register(request):

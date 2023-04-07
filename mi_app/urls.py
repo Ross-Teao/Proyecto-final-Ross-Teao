@@ -1,5 +1,5 @@
 from django.urls import path
-from mi_app.views import base, inicio, exit, register, editarPerfil, PasswordChangeView, password_change_success, productoList,productoDetalle,productoUpdate,productoDelete,portada,info_creador, contacto_home, contacto_contacto
+from mi_app.views import base, inicio, exit, register, editarPerfil, PasswordChangeView, password_change_success, productoList,productoDetalle,productoUpdate,productoDelete,portada,info_creador, contacto_home, contacto_contacto, normas
 from . import views
 
 
@@ -10,6 +10,7 @@ urlpatterns = [
     path('inicio/', inicio, name="inicio"),
     path('portada/', portada, name="portada"),
     path('info_creador/', info_creador, name="info_creador"),
+    path('normas/', normas, name="normas"),
     path('logout/', exit, name="exit"),
     path('register/', register, name="register"),
     path('editarperfil/', editarPerfil, name="editarperfil"),

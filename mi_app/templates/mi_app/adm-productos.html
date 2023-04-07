@@ -25,9 +25,9 @@
         {% for producto in productos %}
         <tr>
             <th scope="row">{{producto.id}}</th>
-            <td>{{producto.nombre}}</td>
-            <td>{{producto.descripcion}}</td>
-            <td>{{producto.precio}}</td>
+            <td><b style="color:#FF0000;" >{{producto.nombre}}</b></td>
+            <td><b style="color:#FF0000;" >{{producto.descripcion}}</b></td>
+            <td><b style="color:#FF0000;" >{{producto.precio}}</b></td>
             {% if producto.imagen %}
             <td scope="row"><img src="{{ producto.imagen.url }}" style="height: 50px; width: 50px;" alt="..."></td>
             {% else %}
