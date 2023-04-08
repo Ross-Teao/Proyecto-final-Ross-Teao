@@ -28,7 +28,12 @@ def portada(request):
 ######################################## TEMPLATE INFO CREADOR ###############################
 
 def info_creador(request):
-    return render(request, "mi_app/info_creador.html")
+    try:
+        avatares = Avatar.objects.filter(user=request.user.id)
+        return render(request, "mi_app/info_creador.html",{'url': avatares[0].imagen.url})
+    
+    except:
+        return render(request, "mi_app/info_creador.html")
 
 ######################################## TEMPLATE INICIO ########################################  (use el try-except por un error de "Index Error: list index out of range" y me gusto la solucion que se me ocurrio :D error por usuario sin foto de perfil) 
 
@@ -36,8 +41,8 @@ def info_creador(request):
 def inicio(request):
     try:
         if request.user.id:
-            avatares = Avatar.objects.filter(user=request.user.id).first().imagen.url
-            return render(request,("mi_app/inicio.html"), {"url_imagen":avatares } )
+            avatares = Avatar.objects.filter(user=request.user.id)
+            return render(request,("mi_app/inicio.html"), {'url': avatares[0].imagen.url} )
         
     except:
             return render(request, "mi_app/inicio.html"  )
@@ -52,8 +57,10 @@ def exit(request):
 
 ######################################## TEMPLATE NORMAS ###############################
 
+@login_required
 def normas(request):
-    return render(request, "mi_app/normas.html")
+    avatares = Avatar.objects.filter(user=request.user.id)
+    return render(request, "mi_app/normas.html",{'url': avatares[0].imagen.url})
 
 
 ######################################## REGISTER USUARIO ###############################
@@ -79,6 +86,8 @@ def register(request):
 @login_required
 def editarPerfil(request):
     
+    avatares = Avatar.objects.filter(user=request.user.id)
+    
     usuario = request.user
     
     if request.method == 'POST':
@@ -100,15 +109,15 @@ def editarPerfil(request):
     else:      
         miFormulario = UserEditForm(initial={'email': usuario.email})
 
-    return render(request, "mi_app/editarperfil.html", {"miFormulario": miFormulario, "usuario": usuario})
+    return render(request, "mi_app/editarperfil.html", {"miFormulario": miFormulario, "usuario": usuario,'url': avatares[0].imagen.url})
 
 
 ######################################## CAMBIO DE CLAVE USUARIO ########################################
 
 class PasswordChangeView(PasswordChangeView):
+
     form_class = PasswordChangingForm
     success_url = reverse_lazy('password_change_success')
-    
 
 def password_change_success(request):
     return render(request,"registration/password_change_success.html")
@@ -120,16 +129,22 @@ def password_change_success(request):
 class AdmProductos(View):
     
     def get(self, request):
+        
+        avatares = Avatar.objects.filter(user=request.user.id)
+        
         productos = Producto.objects.all()
         return render(request, "mi_app/adm-productos.html", {
-            "productos": productos
+            "productos": productos,'url': avatares[0].imagen.url
         })
         
 class SaveProducto(View):
     def get(self, request):
+        
+        avatares = Avatar.objects.filter(user=request.user.id)
+        
         form = ProductoForm()
         return render(request, "mi_app/add-producto.html", {
-            "form": form
+            "form": form,'url': avatares[0].imagen.url
         })
 
     def post(self, request):
@@ -167,55 +182,48 @@ class productoDelete(DeleteView):
 
 
 def contacto_home(request):
-    
-    return render(request, "mi_app/contacto_home.html")
+
+    try:
+        avatares = Avatar.objects.filter(user=request.user.id)
+        return render(request, "mi_app/contacto_home.html",{'url': avatares[0].imagen.url})
+    except:
+        return render(request, "mi_app/contacto_home.html")
+
 
 
 def contacto_contacto(request):
-    
-    # print('Tipo de petición: {}'.format(request.method))
-    contact_form = ContactForm()
-    
-    if request.method == 'POST':
-        # Estoy enviando el formulario
-        contact_form = ContactForm(data=request.POST)
 
-        if contact_form.is_valid():
-            name = request.POST.get('name', '')
-            email = request.POST.get('email', '')
-            message = request.POST.get('message', '')
+    try:
+        avatares = Avatar.objects.filter(user=request.user.id)
 
-            # Enviar el correo electrónico
-            email = EmailMessage(
-                'Mensaje de contacto recibido',
-                'Mensaje enviado por {} <{}>:\n\n{}'.format(name,email,message),
-                email,
-                ['b6e5f6c13f8436@inbox.mailtrap.io'],
-                reply_to=[email],
-            )
-            
-            try:
-                email.send()
-                # Está todo OK
-                return redirect(reverse('contacto_contacto')+'?ok')
-            except:
-                # Ha habido un error y retorno a ERROR
-                return redirect(reverse('contacto_contacto')+'?error')
+        contact_form = ContactForm()
+        
+        if request.method == 'POST':
 
-    return render(request, 'mi_app/contacto_contacto.html', {'form':contact_form})
+            contact_form = ContactForm(data=request.POST)
+
+            if contact_form.is_valid():
+                name = request.POST.get('name', '')
+                email = request.POST.get('email', '')
+                message = request.POST.get('message', '')
 
 
+                email = EmailMessage(
+                    'Mensaje de contacto recibido',
+                    'Mensaje enviado por {} <{}>:\n\n{}'.format(name,email,message),
+                    email,
+                    ['b6e5f6c13f8436@inbox.mailtrap.io'],
+                    reply_to=[email],
+                )
+                
+                try:
+                    email.send()
 
+                    return redirect(reverse('contacto_contacto')+'?ok')
+                except:
 
+                    return redirect(reverse('contacto_contacto')+'?error')
 
-
-
-email = EmailMessage(
-    'Hello',
-    'Body goes here',
-    'from@example.com',
-    ['to1@example.com', 'to2@example.com'],
-    ['bcc@example.com'],
-    reply_to=['another@example.com'],
-    headers={'Message-ID': 'foo'},
-)
+        return render(request, 'mi_app/contacto_contacto.html', {'form':contact_form,'url': avatares[0].imagen.url})
+    except:
+        return render(request, 'mi_app/contacto_contacto.html', {'form':contact_form})

@@ -87,7 +87,7 @@
     </nav>
         
         {% if request.user.is_authenticated %}  <!---Manejo usuario conectado para mostrar nombre y foto(se necesita replegar la foto sobre los otros templates...)-->
-            <a style='color:red' class="float-end" class="nav-link active" aria-current="page" >Usario conectado: {{ user.username | upper}}&nbsp;&nbsp;<img src="{{url_imagen}}" style="height: 40px; width: 45px;" /></a>
+            <a style='color:red' class="float-end" class="nav-link active" aria-current="page" >Usario conectado: {{ user.username | upper}}&nbsp;&nbsp;<img src="{{url}}" style="height: 40px; width: 45px;" /></a>
         {% endif%}
 
 

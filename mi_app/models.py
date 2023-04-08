@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 # avatar
-
 class Avatar(models.Model):
     
     #Vinculo con el usuario
@@ -12,7 +11,7 @@ class Avatar(models.Model):
     
     #Subcarpeta avatares de media :)
     imagen = models.ImageField(upload_to='avatares', null=True, blank = True)
- 
+        
     def __str__(self):
         return f"Usuario: {self.user} - imagen: {self.imagen}"
     
@@ -26,6 +25,4 @@ class Producto(models.Model):
     
     def __str__(self):
         return f"{self.nombre} | {self.descripcion} | {self.precio} | {self.imagen}"
-    
-  
-  
+

@@ -16,20 +16,21 @@
 </head>
 <body>
 
-    <h2>Producto edit+</h2>
+    <h2 style="color:#FF0000;" class="text-center"><b>Producto edit</b></h2>
+    <br>
     <ul>
         {% for Producto in object_list %}
         
-            <li>
-                <p>NOMBRE: {{ Producto.nombre }}</p>
+            <li><h4>
+                <p>NOMBRE: <b>{{ Producto.nombre }}</b></p>
                 <p>
-                    <a href= "{% url 'Detail' Producto.id %}">Ver</a>
-                    <a href= "{% url 'Edit' Producto.id %}">Editar</a>
+                    <a style="color:#FF0000;" href= "{% url 'Detail' Producto.id %}">Ver</a>
+                    <a style="color:#FF0000;" href= "{% url 'Edit' Producto.id %}">Editar</a>
                     {% if user.is_superuser%}                             <!--- solo el admin puede borrar-->
-                    <a href= "{% url 'Delete' Producto.id %}">Borrar</a>
+                    <a style="color:#FF0000;" href= "{% url 'Delete' Producto.id %}">Borrar</a>
                     {% endif%}
                 </p>
-            </li>
+            </h4></li>
         {% endfor %}
     </ul>
 
