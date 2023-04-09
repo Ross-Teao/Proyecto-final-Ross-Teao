@@ -45,7 +45,7 @@ read.me para el repositorio:#####################################
 Proyecto-final-Teao
 Mi proyecto trata de una web para vender de forma anonima donde:
 
-1- Un visitante puede ver info-creador y la portada de la pagina donde se muestra las informacion general.
+1- Un visitante puede ver info-creador, enviar correo y la portada de la pagina donde se muestra las informacion general.
 
 2- Un usuario registrado puede publicar sus productos y ver la lista de productos global.
 

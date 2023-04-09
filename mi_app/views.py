@@ -165,7 +165,7 @@ class productoDetalle(DetailView):
     
     model = Producto
     template_name = "mi_app/producto_detalle.html"
-
+    
 class productoUpdate(UpdateView):
     
     model = Producto
